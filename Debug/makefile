@@ -9,6 +9,7 @@ RM := rm -rf
 
 # All of the sources participating in the build are defined here
 -include sources.mk
+-include User/Src/subdir.mk
 -include Middlewares/Third_Party/FreeRTOS/Source/portable/MemMang/subdir.mk
 -include Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM4F/subdir.mk
 -include Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2/subdir.mk
@@ -16,6 +17,9 @@ RM := rm -rf
 -include Drivers/STM32H7xx_HAL_Driver/Src/subdir.mk
 -include Core/Startup/subdir.mk
 -include Core/Src/subdir.mk
+-include Athena-Driver/BSP/DW3000/src/subdir.mk
+-include Athena-Driver/Athena_deck_HAL/src/subdir.mk
+-include AdHocUWB/Src/subdir.mk
 -include objects.mk
 
 ifneq ($(MAKECMDGOALS),clean)
@@ -64,8 +68,8 @@ all: main-build
 main-build: h7uwb_module.elf secondary-outputs
 
 # Tool invocations
-h7uwb_module.elf h7uwb_module.map: $(OBJS) $(USER_OBJS) C:\Users\16513\Desktop\H7_UWB\h7uwb_module\STM32H743VIHX_FLASH.ld makefile objects.list $(OPTIONAL_TOOL_DEPS)
-	arm-none-eabi-gcc -o "h7uwb_module.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m7 -T"C:\Users\16513\Desktop\H7_UWB\h7uwb_module\STM32H743VIHX_FLASH.ld" --specs=nosys.specs -Wl,-Map="h7uwb_module.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv5-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+h7uwb_module.elf h7uwb_module.map: $(OBJS) $(USER_OBJS) C:\github\h7uwb_module\STM32H743VIHX_FLASH.ld makefile objects.list $(OPTIONAL_TOOL_DEPS)
+	arm-none-eabi-gcc -o "h7uwb_module.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m7 -T"C:\github\h7uwb_module\STM32H743VIHX_FLASH.ld" --specs=nosys.specs -Wl,-Map="h7uwb_module.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv5-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
 	@echo 'Finished building target: $@'
 	@echo ' '
 

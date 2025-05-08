@@ -1,3 +1,0 @@
-../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_ll_gpio.h:942:22:LL_GPIO_TogglePin	1
-../Core/Src/freertos.c:72:6:MX_FREERTOS_Init	1
-../Core/Src/freertos.c:114:6:StartDefaultTask	1
